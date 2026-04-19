@@ -3,26 +3,44 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>HR Dashboard — Positron Capital Management</title>
+<title>Inbox — Positron Connect Admin</title>
+<meta name="robots" content="noindex,nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
-<body>
+<body class="admin-body">
 
-<header class="nav">
+<dialog id="gate" class="gate-dialog">
+  <form class="gate-card" id="gate-form">
+    <span class="aside-eyebrow"><span class="dot"></span> Internal &mdash; staff only</span>
+    <h2>Positron Connect Admin</h2>
+    <p>This area is restricted. Enter the team passcode to continue.</p>
+    <label class="field">
+      <input type="password" id="gate-input" autocomplete="current-password" placeholder=" " required>
+      <span class="label">Passcode</span>
+    </label>
+    <div class="save-row">
+      <button type="submit" class="btn-primary"><span>Unlock</span></button>
+      <span class="saved-tick" id="gate-error" style="color:var(--high)">Incorrect passcode</span>
+    </div>
+  </form>
+</dialog>
+
+<header class="nav admin-nav">
   <a class="brand" href="index.html">
     <span class="brand-mark">P</span>
     <span class="brand-name">
-      <span class="brand-title">Positron</span>
-      <span class="brand-sub">Capital Management</span>
+      <span class="brand-title">Positron Connect</span>
+      <span class="brand-sub">Internal &middot; Admin Console</span>
     </span>
   </a>
   <nav class="nav-links">
-    <a href="index.html">Contact</a>
-    <a href="hr.html" class="active">HR Dashboard</a>
+    <a href="index.html" class="active">Inbox</a>
     <a href="settings.html">Settings</a>
+    <a href="../index.html" class="ext">View public form &rarr;</a>
+    <button class="btn-ghost" id="signout">Sign out</button>
   </nav>
 </header>
 
@@ -30,7 +48,7 @@
 
   <div class="dash-head">
     <div>
-      <h1>HR Dashboard</h1>
+      <h1>Inbox</h1>
       <p>Auto-triaged inquiries. High-priority items pinned to the top.</p>
     </div>
     <div class="dash-actions">
@@ -74,13 +92,13 @@
 
 </main>
 
-<footer class="foot">
+<footer class="foot admin-foot">
   <div class="foot-inner">
-    <span>&copy; <span id="yr"></span> Positron Capital Management</span>
-    <span class="foot-credit">Contact experience built by <strong>Ben Harcourt-Harrison</strong></span>
+    <span>Positron Connect &middot; Internal Admin Console</span>
+    <span class="foot-credit">Built by <strong>Ben Harcourt-Harrison</strong></span>
   </div>
 </footer>
 
-<script src="app.js"></script>
+<script src="../app.js"></script>
 </body>
 </html>

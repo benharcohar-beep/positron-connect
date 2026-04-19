@@ -306,6 +306,44 @@ button{font-family:inherit}
 .saved-tick{color:var(--gold);font-size:13px;opacity:0;transition:opacity .25s ease}
 .saved-tick.show{opacity:1}
 
+/* ---------- admin variant ---------- */
+.admin-body{ background:#f4f3ee; }
+.admin-body.locked{ overflow:hidden; }
+.admin-nav{
+  background:#1a1a1a;
+  border-bottom:1px solid #2a2a2a;
+}
+.admin-nav.scrolled{ background:#1a1a1a; border-bottom-color:#2a2a2a; }
+.admin-nav .brand-mark{ background:var(--gold); color:#1a1a1a; }
+.admin-nav .brand-title{ color:#fff; }
+.admin-nav .brand-sub{ color:var(--gold); letter-spacing:.22em; }
+.admin-nav .nav-links a{ color:#bcbcb6; }
+.admin-nav .nav-links a:hover{ color:#fff; }
+.admin-nav .nav-links a.active{ color:#fff; }
+.admin-nav .nav-links a.active::after{ background:var(--gold); }
+.admin-nav .nav-links a.ext{ color:var(--gold); font-size:13px; }
+.admin-nav .btn-ghost{
+  background:transparent; color:#bcbcb6; border-color:#2f2f2f;
+}
+.admin-nav .btn-ghost:hover{ color:#fff; border-color:var(--gold); }
+
+.admin-foot{ background:#1a1a1a; border-top-color:#2a2a2a; }
+.admin-foot .foot-inner{ color:#7a7a76; }
+.admin-foot .foot-credit strong{ color:#bcbcb6; }
+
+/* ---------- gate ---------- */
+.gate-dialog{
+  border:none;padding:0;background:transparent;max-width:440px;width:90%;
+}
+.gate-dialog::backdrop{ background:rgba(20,20,20,.55); backdrop-filter:blur(8px); }
+.gate-card{
+  background:#fff;border-radius:var(--radius);padding:32px;
+  display:flex;flex-direction:column;gap:18px;
+  box-shadow:0 30px 80px -20px rgba(20,20,20,.45);
+}
+.gate-card h2{ font-family:var(--serif); font-weight:400; font-size:26px; margin:0; letter-spacing:-.3px; }
+.gate-card p{ margin:0; color:var(--muted); font-size:14px; }
+
 /* ---------- responsive ---------- */
 @media (max-width: 900px){
   .nav{padding:18px 24px}

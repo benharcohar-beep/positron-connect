@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Settings — Positron Connect Admin</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body class="admin-body">
+
+<dialog id="gate" class="gate-dialog">
+  <form class="gate-card" id="gate-form">
+    <span class="aside-eyebrow"><span class="dot"></span> Internal &mdash; staff only</span>
+    <h2>Positron Connect Admin</h2>
+    <p>This area is restricted. Enter the team passcode to continue.</p>
+    <label class="field">
+      <input type="password" id="gate-input" autocomplete="current-password" placeholder=" " required>
+      <span class="label">Passcode</span>
+    </label>
+    <div class="save-row">
+      <button type="submit" class="btn-primary"><span>Unlock</span></button>
+      <span class="saved-tick" id="gate-error" style="color:var(--high)">Incorrect passcode</span>
+    </div>
+  </form>
+</dialog>
+
+<header class="nav admin-nav">
+  <a class="brand" href="index.html">
+    <span class="brand-mark">P</span>
+    <span class="brand-name">
+      <span class="brand-title">Positron Connect</span>
+      <span class="brand-sub">Internal &middot; Admin Console</span>
+    </span>
+  </a>
+  <nav class="nav-links">
+    <a href="index.html">Inbox</a>
+    <a href="settings.html" class="active">Settings</a>
+    <a href="../index.html" class="ext">View public form &rarr;</a>
+    <button class="btn-ghost" id="signout">Sign out</button>
+  </nav>
+</header>
+
+<main class="container">
+  <div class="settings-card">
+    <div>
+      <h1>Settings</h1>
+      <p>Configure where new inquiry notifications are routed and who can access this console.</p>
+    </div>
+
+    <div>
+      <label class="field">
+        <input type="email" id="hr-email" placeholder=" ">
+        <span class="label">HR notification email</span>
+      </label>
+      <p class="aside-sub" style="margin:8px 0 0">High-priority inquiries are flagged in the subject line. Medium and low go to the same inbox unless filtered.</p>
+    </div>
+
+    <hr style="border:none;border-top:1px solid var(--line);margin:0">
+
+    <div>
+      <label class="field">
+        <input type="password" id="admin-pass" placeholder=" " autocomplete="new-password">
+        <span class="label">Admin passcode</span>
+      </label>
+      <p class="aside-sub" style="margin:8px 0 0">Required to access this console. Leave blank to keep the current passcode.</p>
+    </div>
+
+    <div class="save-row">
+      <button class="btn-primary" id="save-settings"><span>Save</span></button>
+      <span class="saved-tick" id="saved-tick">&check; Saved</span>
+    </div>
+  </div>
+</main>
+
+<footer class="foot admin-foot">
+  <div class="foot-inner">
+    <span>Positron Connect &middot; Internal Admin Console</span>
+    <span class="foot-credit">Built by <strong>Ben Harcourt-Harrison</strong></span>
+  </div>
+</footer>
+
+<script src="../app.js"></script>
+</body>
+</html>

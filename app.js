@@ -1,6 +1,8 @@
 // ---------- shared store ----------
 const STORE_KEY = "positron_submissions_v1";
 const SETTINGS_KEY = "positron_settings_v1";
+const GATE_KEY = "positron_admin_unlocked_v1";
+const DEFAULT_PASSCODE = "positron2026";
 
 const HIGH = ["urgent","investor","fund","funding","capital","partnership","acquisition","press","media","lawsuit","legal","compliance","sec","allocator","mandate","rfp","institutional","billion","million","ipo","merger"];
 const MED  = ["career","interview","role","internship","application","cv","resume","hiring","position","analyst","intern","graduate"];
@@ -340,20 +342,58 @@ function bindSettings(){
   const input = document.getElementById("hr-email");
   const save = document.getElementById("save-settings");
   const tick = document.getElementById("saved-tick");
+  const passInput = document.getElementById("admin-pass");
   if(!input) return;
   input.value = loadSettings().hrEmail || "hr@positroncm.com";
   save.addEventListener("click", () => {
     const s = loadSettings();
     s.hrEmail = input.value.trim();
+    if(passInput && passInput.value.trim()){
+      s.passcode = passInput.value.trim();
+      passInput.value = "";
+    }
     saveSettings(s);
     tick.classList.add("show");
     setTimeout(() => tick.classList.remove("show"), 1800);
   });
 }
 
+// ---------- Admin gate (client-side only — keeps casual visitors out, not real auth) ----------
+function bindGate(){
+  const dlg = document.getElementById("gate");
+  if(!dlg) return; // not on an admin page
+  const unlocked = sessionStorage.getItem(GATE_KEY) === "1";
+  if(!unlocked){
+    if(dlg.showModal) dlg.showModal(); else dlg.setAttribute("open","");
+    document.body.classList.add("locked");
+    setTimeout(() => document.getElementById("gate-input")?.focus(), 50);
+  }
+  const form = document.getElementById("gate-form");
+  const err = document.getElementById("gate-error");
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const expected = loadSettings().passcode || DEFAULT_PASSCODE;
+    const got = document.getElementById("gate-input").value;
+    if(got === expected){
+      sessionStorage.setItem(GATE_KEY, "1");
+      if(dlg.close) dlg.close(); else dlg.removeAttribute("open");
+      document.body.classList.remove("locked");
+    } else {
+      err.classList.add("show");
+      setTimeout(() => err.classList.remove("show"), 2000);
+      document.getElementById("gate-input").value = "";
+    }
+  });
+  document.getElementById("signout")?.addEventListener("click", () => {
+    sessionStorage.removeItem(GATE_KEY);
+    location.reload();
+  });
+}
+
 // ---------- init ----------
 document.addEventListener("DOMContentLoaded", () => {
   setYear();
+  bindGate();
   bindNav();
   bindReveal();
   bindHero();

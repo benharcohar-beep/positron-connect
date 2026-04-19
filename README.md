@@ -7,21 +7,28 @@ A drop-in replacement for the Positron Capital Management contact page. Built as
 - Polished light/minimalist contact page matching the Positron site aesthetic
 - **Live priority preview** as the user types (High / Medium / Low) with matched-keyword chips
 - 3 numbered form sections, floating-label inputs, animated success state with AI summary
-- **HR Dashboard** (`hr.html`) — sortable submissions table with priority badges, 14-day bar chart, breakdown by reason
-- **Settings** (`settings.html`) — configurable HR notification email
+- **Internal Admin Console** (`/admin/`) — passcode-gated, separate dark theme, with:
+  - Inbox: sortable submissions, priority badges, 14-day bar chart, breakdown by reason
+  - Settings: HR notification email + admin passcode
 - Submissions stored in `localStorage` for the demo (so the dashboard shows real data without a backend)
 
 ## Files
 
 ```
 positron-connect/
-├── index.html       — contact form (the main pitch)
-├── hr.html          — HR dashboard
-├── settings.html    — HR email config
-├── styles.css       — all styling
-├── app.js           — priority heuristics, form, dashboard
+├── index.html              — PUBLIC contact form (what customers/candidates see)
+├── admin/
+│   ├── index.html          — INTERNAL inbox (HR sees triaged submissions)
+│   └── settings.html       — INTERNAL settings (HR email + admin passcode)
+├── styles.css              — all styling (light public theme + dark admin theme)
+├── app.js                  — priority heuristics, form, dashboard, gate
 └── README.md
 ```
+
+**Front-end / back-end separation:**
+- The public site (`/`) has no link to the admin console — visitors only see the contact form.
+- The admin console (`/admin/`) has its own dark internal-looking nav, requires a passcode, and is marked `noindex` so search engines won't surface it.
+- Default admin passcode: **`positron2026`** — change it from the admin Settings page on first login.
 
 ## Run locally
 
@@ -42,11 +49,15 @@ open index.html
 
 ## Going to production (notes for Positron)
 
-The demo uses `localStorage` so submissions live in the browser. To wire it up for real, replace the `form.addEventListener("submit", ...)` block in `app.js` with a POST to either:
+**Storage:** the demo uses `localStorage` so submissions live in the browser. To wire it up for real, replace the `form.addEventListener("submit", ...)` block in `app.js` with a POST to either:
 
 - **Formspree** (https://formspree.io) — free tier, just point the form `action` at a Formspree endpoint
 - **Web3Forms** (https://web3forms.com) — similar, no backend needed
 - A custom endpoint on your existing infrastructure
+
+**Auth:** the admin passcode gate is client-side only — fine for a demo or low-stakes internal tool, but not real security. For production, put `/admin/` behind:
+- A reverse-proxy with HTTP basic auth (Cloudflare Access, Netlify password protection, nginx), or
+- Real session-based auth with a backend
 
 The priority classifier (`classify()` in `app.js`) and summariser (`summarise()`) are pure functions — they can be reused on the server side to enrich the email subject line.
 
