@@ -82,7 +82,7 @@ function bindHero(){
 
   // dot grid
   function drawGrid(){
-    ctx.fillStyle = "rgba(202,166,87,0.18)";
+    ctx.fillStyle = "rgba(93,110,87,0.20)";
     const step = 24;
     for(let x=0;x<w;x+=step){
       for(let y=0;y<h;y+=step){
@@ -100,7 +100,7 @@ function bindHero(){
     drawGrid();
     ctx.beginPath();
     ctx.lineWidth = 1.4;
-    ctx.strokeStyle = "rgba(202,166,87,0.55)";
+    ctx.strokeStyle = "rgba(93,110,87,0.55)";
     const amp = h * 0.08;
     const baseY = h * 0.58;
     for(let x=0;x<=w;x+=4){
@@ -244,7 +244,7 @@ function renderDash(){
   const legend = document.getElementById("donut-legend");
   legend.innerHTML = "";
   const entries = Object.entries(reasons);
-  const colors = ["#caa657","#1a1a1a","#b54545","#9a7a18","#5d5d5b"];
+  const colors = ["#5d6e57","#1c1c1c","#a26a3a","#7d6628","#54534b"];
   if(entries.length === 0){
     donut.innerHTML = '<circle cx="60" cy="60" r="46" fill="none" stroke="#ececea" stroke-width="14"/>';
     legend.innerHTML = '<span class="row-meta">No data yet</span>';
