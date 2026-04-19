@@ -124,6 +124,7 @@ function bindLivePriority(){
   const badge = document.getElementById("lp-badge");
   const fill  = document.getElementById("lp-fill");
   const chips = document.getElementById("lp-keywords");
+  if(!badge || !fill || !chips) return; // live preview removed from public form
 
   const update = () => {
     const combined = (reasonSel?.value || "") + " " + ta.value;
@@ -172,24 +173,14 @@ function bindForm(){
     all.unshift(submission);
     saveSubmissions(all);
 
-    // populate success dialog
+    // populate success dialog (priority intentionally hidden from submitter to prevent gaming)
     const dlg = document.getElementById("success");
-    const sp = document.getElementById("s-priority");
-    sp.classList.remove("low","med","high");
-    sp.classList.add(level);
-    sp.textContent = level === "high" ? "High" : level === "med" ? "Medium" : "Low";
     document.getElementById("s-reason").textContent = submission.reason;
     document.getElementById("s-from").textContent = submission.name + (submission.company ? " — " + submission.company : "");
     document.getElementById("s-summary").textContent = submission.summary || "(no message body)";
     if(dlg.showModal){ dlg.showModal(); } else { dlg.setAttribute("open",""); }
 
     form.reset();
-    bindLivePriority(); // re-bind in case (form reset doesn't blur listeners but resets values)
-    // reset live priority view
-    const badge = document.getElementById("lp-badge");
-    badge.classList.remove("low","med","high"); badge.classList.add("low"); badge.textContent = "Low";
-    document.getElementById("lp-fill").style.width = "10%";
-    document.getElementById("lp-keywords").innerHTML = "";
 
     // optionally fire mailto for HR if configured
     const hr = (loadSettings().hrEmail || "").trim();
