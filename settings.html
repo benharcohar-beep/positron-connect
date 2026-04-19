@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Settings — Positron Capital Management</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="nav">
+  <a class="brand" href="index.html">
+    <span class="brand-mark">P</span>
+    <span class="brand-name">
+      <span class="brand-title">Positron</span>
+      <span class="brand-sub">Capital Management</span>
+    </span>
+  </a>
+  <nav class="nav-links">
+    <a href="index.html">Contact</a>
+    <a href="hr.html">HR Dashboard</a>
+    <a href="settings.html" class="active">Settings</a>
+  </nav>
+</header>
+
+<main class="container">
+  <div class="settings-card">
+    <div>
+      <h1>Settings</h1>
+      <p>Configure where new inquiry notifications are routed.</p>
+    </div>
+
+    <label class="field">
+      <input type="email" id="hr-email" placeholder=" ">
+      <span class="label">HR notification email</span>
+    </label>
+    <p class="aside-sub" style="margin:-12px 0 0">High-priority inquiries are flagged in the subject line. Medium and low go to the same inbox unless filtered.</p>
+
+    <div class="save-row">
+      <button class="btn-primary" id="save-settings"><span>Save</span></button>
+      <span class="saved-tick" id="saved-tick">&check; Saved</span>
+    </div>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <span>&copy; <span id="yr"></span> Positron Capital Management</span>
+    <span class="foot-credit">Contact experience built by <strong>Ben Harcourt-Harrison</strong></span>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
